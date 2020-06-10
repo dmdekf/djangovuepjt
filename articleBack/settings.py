@@ -20,11 +20,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ')t3e(_d28kwjb)f7xu*f(n%q1)n%hmomc0vw!i^c%2#tbs$16q'
-
+# SECRET_KEY = ')t3e(_d28kwjb)f7xu*f(n%q1)n%hmomc0vw!i^c%2#tbs$16q'
+import os 
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', ')t3e(_d28kwjb)f7xu*f(n%q1)n%hmomc0vw!i^c%2#tbs$16q')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
 
+출처: https://egg-money.tistory.com/115 [완숙의 에그머니]
 ALLOWED_HOSTS = ['*']
 
 
