@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
+import dj_database_url
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -21,11 +22,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = ')t3e(_d28kwjb)f7xu*f(n%q1)n%hmomc0vw!i^c%2#tbs$16q'
-import os 
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', ')t3e(_d28kwjb)f7xu*f(n%q1)n%hmomc0vw!i^c%2#tbs$16q')
+SECRET_KEY = os.environ.get(
+    'DJANGO_SECRET_KEY', ')t3e(_d28kwjb)f7xu*f(n%q1)n%hmomc0vw!i^c%2#tbs$16q')
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
-DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
+DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
 ALLOWED_HOSTS = ['*']
 
 
@@ -153,8 +154,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ]
 }
-import dj_database_url 
-db_from_env = dj_database_url.config(conn_max_age=500) 
+db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
 # WHITELIST
 CORS_ORIGIN_ALLOW_ALL = True
