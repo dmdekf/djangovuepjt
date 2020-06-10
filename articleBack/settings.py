@@ -26,8 +26,6 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', ')t3e(_d28kwjb)f7xu*f(n%q1)n%hm
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
 DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
-
-출처: https://egg-money.tistory.com/115 [완숙의 에그머니]
 ALLOWED_HOSTS = ['*']
 
 
@@ -63,6 +61,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware', 'django.middleware.security.SecurityMiddleware', 'django.contrib.sessions.middleware.SessionMiddleware', 'django.middleware.common.CommonMiddleware', 'django.middleware.csrf.CsrfViewMiddleware', 'django.contrib.auth.middleware.AuthenticationMiddleware', 'django.contrib.messages.middleware.MessageMiddleware', 'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -154,6 +153,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ]
 }
-
+import dj_database_url 
+db_from_env = dj_database_url.config(conn_max_age=500) DATABASES['default'].update(db_from_env)
 # WHITELIST
 CORS_ORIGIN_ALLOW_ALL = True
