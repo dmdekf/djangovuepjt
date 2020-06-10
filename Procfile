@@ -1,1 +1,1 @@
-web: gunicorn djangovuepjt.wsgi --log-file -
+web: gunicorn articleBack.wsgi --log-file -
